@@ -120,9 +120,20 @@ function filtrarAuto() {
     .filter(filtrarTransmision)
     .filter(filtrarColor);
 
-  console.table(resultado);
+  if (resultado.length) {
+    mostrarAutos(resultado);
+  } else {
+    noResultado();
+  }
+}
 
-  mostrarAutos(resultado);
+function noResultado() {
+  limpiarHTML();
+  const noResultado = document.createElement("div");
+  noResultado.classList.add("alerta", "error");
+  noResultado.textContent =
+    "No Hay Resultados, intenta con otros términos de búsqueda";
+  resultado.appendChild(noResultado);
 }
 
 function filtrarMarca(auto) {
